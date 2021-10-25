@@ -22,7 +22,7 @@ public class ServiceSearchFile {
         threadController.start();
     }
 
-    public void go(){
+    public void go() {
         Thread thread = new SearchFileThread(fileName, folder, this.threadController);
         workers.add(thread);
         threadController.setThread(thread);
@@ -37,11 +37,11 @@ public class ServiceSearchFile {
         threadController.setStop(true);
     }
 
-    private void createThreads(File folder){
+    private void createThreads(File folder) {
         File[] files = folder.listFiles();
-        if(files == null) return;
+        if (files == null) return;
         for (File f : files) {
-            if (f.isDirectory()){
+            if (f.isDirectory()) {
                 Thread th = new SearchFileThread(fileName, f, this.threadController);
                 workers.add(th);
                 threadController.setThread(th);

@@ -3,7 +3,7 @@ package ua.kovalev;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThreadController extends Thread{
+public class ThreadController extends Thread {
     private int maxCounts;
     private int curCounts;
     private List<Thread> threads;
@@ -17,21 +17,21 @@ public class ThreadController extends Thread{
 
     @Override
     public void run() {
-        synchronized (this){
+        synchronized (this) {
             while (!stop) {
-                if(curCounts>=maxCounts) {
+                if (curCounts >= maxCounts) {
                     try {
                         wait();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
-                if(!threads.isEmpty()){
+                if (!threads.isEmpty()) {
                     Thread thread = threads.get(0);
                     threads.remove(0);
                     curCounts++;
                     thread.start();
-                }else {
+                } else {
                     try {
                         wait();
                     } catch (InterruptedException e) {
@@ -42,17 +42,17 @@ public class ThreadController extends Thread{
         }
     }
 
-    synchronized public void setThread(Thread thread){
+    synchronized public void setThread(Thread thread) {
         threads.add(thread);
         notifyAll();
     }
 
-    synchronized public void finishThread(){
+    synchronized public void finishThread() {
         curCounts--;
         notifyAll();
     }
 
-    synchronized public void setStop(boolean stop){
+    synchronized public void setStop(boolean stop) {
 //        System.out.println("ThreadController.setStop.stop: " + stop);
         this.stop = stop;
         notifyAll();

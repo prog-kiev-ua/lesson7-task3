@@ -24,7 +24,7 @@ public class SearchFileThread extends Thread {
         if (files != null) {
             for (File file : files) {
                 if (file.isFile()) {
-                    if (file.getName().equals(fileName)){
+                    if (file.getName().equals(fileName)) {
                         System.out.println("Файл найден: " + file.getAbsolutePath());
                         break;
                     }
